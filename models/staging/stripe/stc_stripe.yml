@@ -7,9 +7,9 @@ sources:
       - name: payment
         freshness: 
           warn_after:
-            count: 1
+            count: 3
             period: day
           error_after:
-            count: 2
+            count: 4
             period: day
         loaded_at_field: _batched_at
