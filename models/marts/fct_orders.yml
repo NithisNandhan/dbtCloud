@@ -1,5 +1,8 @@
 models:
   - name: fct_orders
+    group: finance
+    access: public
+    latest_version: 1
     config:
       contract:
         enforced: true
@@ -8,39 +11,52 @@ models:
         data_type: varchar
         constraints:
           - type: not_null
-      
+
       - name: location_id
         data_type: varchar
-      
+
       - name: customer_id
         data_type: varchar
-      
+
       - name: order_total
-        data_type: decimal
-      
+        data_type: numbers
+
       - name: tax_paid
-        data_type: int
-      
+        data_type: numbers
+
       - name: ordered_at
         data_type: timestamp
-      
+
       - name: customer_name
         data_type: varchar
-      
+
       - name: tax_rate
-        data_type: decimal
-      
+        data_type: numbers
+
       - name: location_name
         data_type: varchar
-      
+
       - name: location_opened_at
         data_type: timestamp
-      
+
       - name: ordered_month
         data_type: int
-      
+
       - name: ordered_day
         data_type: int
-      
+
       - name: ordered_year
         data_type: int
+
+    versions:
+      - v: 1
+        config:
+          alias: fct_orders
+      - v: 2
+        columns:
+          - include: all
+            exclude: [order_total]
+          - name: order_amount
+            data_type: numbers
+          - name: lcoation_opened_at
+            data_type: date
